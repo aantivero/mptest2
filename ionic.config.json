@@ -1,0 +1,8 @@
+{
+  "name": "debinmobile2",
+  "app_id": "f064c0a8",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
