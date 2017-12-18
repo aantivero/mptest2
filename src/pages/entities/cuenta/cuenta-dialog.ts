@@ -68,10 +68,10 @@ export class CuentaDialogPage {
         this.viewCtrl.dismiss(this.form.value);
     }
 
-    private onError(error) {
+    /*private onError(error) {
         console.error(error);
         // todo: use toaster, this.jhiAlertService.error(error.message, null, null);
-    }
+    }*/
 
     compareUser(first: User, second: User): boolean {
         return first && second ? first.id === second.id : first === second;

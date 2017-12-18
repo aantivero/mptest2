@@ -12,9 +12,11 @@ import { MensajeService } from './mensaje.provider';
 })
 export class MensajeDetailPage {
     mensaje: Mensaje;
+    id: string = '';
 
     constructor(private modalCtrl: ModalController, private params: NavParams,
                 private mensajeService: MensajeService, private toastCtrl: ToastController) {
+        this.id = params.get('id');            
         this.mensaje = new Mensaje();
         this.mensaje.id = params.get('id');
     }
@@ -24,6 +26,7 @@ export class MensajeDetailPage {
     }
 
     open(item: Mensaje) {
+        this.id = this.params.get('id');
         let modal = this.modalCtrl.create('MensajeDialogPage', {item: item});
         modal.onDidDismiss(mensaje => {
             if (mensaje) {

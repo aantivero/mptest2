@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController, ToastController } from 'ionic-angular';
 import { Mensaje } from './mensaje.model';
 import { MensajeService } from './mensaje.provider';
+import { Cuenta } from '../cuenta/index';
+import { User } from '../../../models/index';
 
 @IonicPage()
 @Component({
@@ -42,8 +44,20 @@ export class MensajePage {
     }
 
     open(slidingItem: any, item: Mensaje) {
+        if (item ==null || item === null || item == 'undefined') {
+            item = new Mensaje();
+            item.cuentaEmisor = new Cuenta();
+            item.cuentaEmisor.nombre = 'emisor';
+            item.cuentaReceptor = new Cuenta();
+            item.cuentaReceptor.nombre = 'receptor';
+            item.receptor = new User();
+        }
         let modal = this.modalCtrl.create('MensajeDialogPage', {item: item});
         modal.onDidDismiss(mensaje => {
+            console.log(mensaje);
+            let receptor = mensaje.receptor;
+            mensaje.receptor = new User();
+            mensaje.receptor.login = receptor;
             if (mensaje) {
                 if (mensaje.id) {
                     this.mensajeService.update(mensaje).subscribe(data => {

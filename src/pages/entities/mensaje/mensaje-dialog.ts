@@ -48,7 +48,7 @@ export class MensajeDialogPage {
             cuentaEmisor: [params.get('item') ? this.mensaje.cuentaEmisor : '',],
             emisor: [params.get('item') ? this.mensaje.emisor : '',],
             cuentaReceptor: [params.get('item') ? this.mensaje.cuentaReceptor : '',],
-            receptor: [params.get('item') ? this.mensaje.receptor : '',],
+            receptor: [params.get('item') ? this.mensaje.receptor.login : '',],
         });
 
         // Watch the form for changes, and

@@ -77,12 +77,15 @@
                     <ion-option [value]="userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</ion-option>
                 </ion-select>
             </ion-item>
-            <ion-item>
+            <!--<ion-item>
                 <ion-label>Receptor</ion-label>
                 <ion-select id="field_receptor" formControlName="receptor" [compareWith]="compareUser">
                     <ion-option [value]="null"></ion-option>
                     <ion-option [value]="userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.login}}</ion-option>
                 </ion-select>
+            </ion-item>-->
+            <ion-item>
+                <ion-input type="text" placeholder="Receptor" formControlName="receptor"></ion-input>
             </ion-item>
         </ion-list>
     </form>

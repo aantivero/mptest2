@@ -15,11 +15,17 @@ import { User } from '../../../models/index';
 })
 export class CuentaDetailPage {
     cuenta: Cuenta;
+    id: string = '';
 
-    constructor(private modalCtrl: ModalController, private params: NavParams,
+    constructor(private modalCtrl: ModalController, 
                 private cuentaService: CuentaService, private toastCtrl: ToastController,
                 private principal: Principal,
-                private app: App) {
+                private app: App,
+                private params: NavParams 
+            ) {
+        this.id = params.get('id');
+        console.log(this.id);
+
         this.cuenta = new Cuenta();
         this.principal.identity().then((account) => {
             if (account === null) {
@@ -37,6 +43,7 @@ export class CuentaDetailPage {
     ionViewDidLoad() {
         console.log("llamada 01");
         this.cuentaService.find(this.cuenta.id).subscribe(data => this.cuenta = data);
+        this.id = this.params.get('id');
         console.log("llamada 01-B");
     }
 

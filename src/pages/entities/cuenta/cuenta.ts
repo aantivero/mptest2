@@ -46,7 +46,7 @@ export class CuentaPage {
         if (item ==null || item === null || item == 'undefined') {
             item = new Cuenta();
             item.user = new User();
-            item.user.login = 'loolllo';
+            item.user.login = 'control1';
         }
         let modal = this.modalCtrl.create('CuentaDialogPage', {item: item});
         modal.onDidDismiss(cuenta => {
