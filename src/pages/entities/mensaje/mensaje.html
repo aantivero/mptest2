@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Mensajes</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="open()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<!-- todo: add elasticsearch support -->
+<ion-content padding>
+    <ion-list>
+        <ion-item-sliding *ngFor="let mensaje of mensajes; trackBy: trackId" #slidingItem>
+            <button ion-item (click)="detail(mensaje)">
+                <!-- todo: special handling for translating enum - {{'EstadoMensaje.' + mensaje.estado}}" -->
+                <p>{{mensaje.estado}}</p>
+                <p>{{mensaje.descripcion}}</p>
+                <p>{{mensaje.monto}}</p>
+                <p>{{mensaje.comentario}}</p>
+                <p>{{mensaje.motivo}}</p>
+                <!-- todo: special handling for translating enum - {{'TipoMensaje.' + mensaje.tipo}}" -->
+                <p>{{mensaje.tipo}}</p>
+            </button>
+            <ion-item-options>
+                <button ion-button color="primary" (click)="open(slidingItem, blog)">
+                    {{ 'EDIT_BUTTON' | translate }}
+                </button>
+                <button ion-button color="danger" (click)="delete(mensaje)">
+                    {{ 'DELETE_BUTTON' | translate }}
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item *ngIf="!mensajes?.length">
+        No Mensajes found.
+    </ion-item>
+</ion-content>

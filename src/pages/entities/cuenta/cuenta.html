@@ -1,0 +1,35 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Cuentas</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="open()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<!-- todo: add elasticsearch support -->
+<ion-content padding>
+    <ion-list>
+        <ion-item-sliding *ngFor="let cuenta of cuentas; trackBy: trackId" #slidingItem>
+            <button ion-item (click)="detail(cuenta)">
+                <p>{{cuenta.nombre}}</p>
+                <p>{{cuenta.cbu}}</p>
+                <p>{{cuenta.aliasCbu}}</p>
+                <p>{{cuenta.banco}}</p>
+                <p>{{cuenta.saldo}}</p>
+            </button>
+            <ion-item-options>
+                <button ion-button color="primary" (click)="open(slidingItem, blog)">
+                    {{ 'EDIT_BUTTON' | translate }}
+                </button>
+                <button ion-button color="danger" (click)="delete(cuenta)">
+                    {{ 'DELETE_BUTTON' | translate }}
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <ion-item *ngIf="!cuentas?.length">
+        No Cuentas found.
+    </ion-item>
+</ion-content>

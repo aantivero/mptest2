@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Mensaje</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label>Estado</ion-label>
+            <div item-content>
+                <span>{{mensaje.estado}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Descripcion</ion-label>
+            <div item-content>
+                <span>{{mensaje.descripcion}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Monto</ion-label>
+            <div item-content>
+                <span>{{mensaje.monto}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Comentario</ion-label>
+            <div item-content>
+                <span>{{mensaje.comentario}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Motivo</ion-label>
+            <div item-content>
+                <span>{{mensaje.motivo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Tipo</ion-label>
+            <div item-content>
+                <span>{{mensaje.tipo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Cuenta Emisor</ion-label>
+            <div item-content *ngIf="mensaje.cuentaEmisor">
+                <a>{{mensaje.cuentaEmisor?.aliasCbu}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Cuenta Receptor</ion-label>
+            <div item-content *ngIf="mensaje.cuentaReceptor">
+                <a>{{mensaje.cuentaReceptor?.aliasCbu}}</a>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Emisor</ion-label>
+            <div item-content>{{mensaje.emisor?.login}}</div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Receptor</ion-label>
+            <div item-content>{{mensaje.receptor?.login}}</div>
+        </ion-item>
+    </ion-list>
+
+    <button ion-button block (click)="open(mensaje)">{{ 'EDIT_BUTTON' | translate }}</button>
+</ion-content>

@@ -39,7 +39,8 @@
     "@ionic/app-scripts": "3.1.0",
     "typescript": "2.4.2",
     "generator-jhipster": "^4.10.2",
-    "@types/node": "^8.0.47"
+    "@types/node": "^8.0.47",
+    "generator-jhipster-ionic": "^3.0.1"
   },
   "description": "An Ionic project"
 }

@@ -1,0 +1,45 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Cuenta</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <ion-list>
+        <ion-item>
+            <ion-label>Nombre</ion-label>
+            <div item-content>
+                <span>{{cuenta.nombre}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Cbu</ion-label>
+            <div item-content>
+                <span>{{cuenta.cbu}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Alias Cbu</ion-label>
+            <div item-content>
+                <span>{{cuenta.aliasCbu}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Banco</ion-label>
+            <div item-content>
+                <span>{{cuenta.banco}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>Saldo</ion-label>
+            <div item-content>
+                <span>{{cuenta.saldo}}</span>
+            </div>
+        </ion-item>
+        <ion-item>
+            <ion-label>User</ion-label>
+            <div item-content>{{cuenta.user?.login}}</div>
+        </ion-item>
+    </ion-list>
+
+    <button ion-button block (click)="open(cuenta)">{{ 'EDIT_BUTTON' | translate }}</button>
+</ion-content>
