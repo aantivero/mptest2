@@ -3,6 +3,7 @@ import { App, IonicPage, NavController } from 'ionic-angular';
 import { Principal } from '../../providers/auth/principal.service';
 import { FirstRunPage } from '../pages';
 import { LoginService } from '../../providers/login/login.service';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @IonicPage()
 @Component({
@@ -12,10 +13,15 @@ import { LoginService } from '../../providers/login/login.service';
 export class HomePage implements OnInit {
   account: Account;
 
+  qrData = null;
+  createdCode = '';
+  scannedCode = null;
+
   constructor(public navCtrl: NavController,
               private principal: Principal,
               private app: App,
-              private loginService: LoginService) { }
+              private loginService: LoginService,
+              private barcodeScanner: BarcodeScanner) { }
 
   ngOnInit() {
     this.principal.identity().then((account) => {
@@ -34,5 +40,17 @@ export class HomePage implements OnInit {
   logout() {
     this.loginService.logout();
     this.app.getRootNavs()[0].setRoot(FirstRunPage);
+  }
+
+  createCode() {
+    this.createdCode = this.qrData;
+  }
+
+  scanCode() {
+    this.barcodeScanner.scan().then(barcodeData => {
+      this.scannedCode = barcodeData.text;
+    }, (err) => {
+      console.log('Error: ', err);
+    })
   }
 }

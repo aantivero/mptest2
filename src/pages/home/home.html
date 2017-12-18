@@ -14,5 +14,24 @@
 <ion-content padding>
   <p>{{ 'WELCOME_INTRO' | translate }}</p>
 
-  <span class="hipster"></span>
+  <ion-item>
+    <ion-input type="text" placeholder="Ingresar Datos..." [(ngModel)]="qrData"></ion-input>
+  </ion-item>
+
+  <button ion-button full icon-left (click)="createCode()"><ion-icon name="barcode"></ion-icon>Crear Codigo</button>
+  <button ion-button full icon-right (click)="scanCode()"><ion-icon name="qr-scanner"></ion-icon>Leer Codigo</button>
+
+  <ion-card *ngIf="createdCode">
+    <ngx-qrcode [qrc-value] = "createdCode">
+    </ngx-qrcode>
+    <ion-card-content>
+      <p>Valor Creado: {{createdCode}}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="scannedCode">
+    <ion-card-content>
+      Resultado Scaneado: {{scannedCode}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>
