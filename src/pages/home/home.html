@@ -15,11 +15,16 @@
   <ion-list>
       <ion-item>
         {{'WELCOME_INTRO' | translate}}
+        <!--<button ion-button item-end icon-left (click)="refresh()" *ngIf="actualizacionOnLine">-->
         <button ion-button item-end icon-left (click)="refresh()">
           <ion-icon name="refresh"></ion-icon>
           Actualizar
         </button>
       </ion-item>
+    <!--<ion-item>
+      <ion-label>Actualización On-line</ion-label>
+      <ion-toggle [(ngModel)]="actualizarOnLine" name="actualizarOnLine" (ionChange)="cambiarActualizacion()">Actualizacion On-Line</ion-toggle>
+    </ion-item> -->
   </ion-list>
   <ion-card *ngFor="let cuenta of cuentas">
     <ion-item>

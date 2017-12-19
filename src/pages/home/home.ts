@@ -21,6 +21,9 @@ export class HomePage implements OnInit {
   createdCode = '';
   scannedCode = null;
 
+  //actualizacionOnLine: boolean = true;
+  timer: any;
+
   constructor(public navCtrl: NavController,
               private principal: Principal,
               private app: App,
@@ -28,6 +31,7 @@ export class HomePage implements OnInit {
               private barcodeScanner: BarcodeScanner,
               private cuentaService: CuentaService) {
     this.cuentas = [];
+    //this.actualizacionOnLine = true;
   }
 
   ngOnInit() {
@@ -37,6 +41,10 @@ export class HomePage implements OnInit {
       } else {
         this.account = account;
         this.loadAll();
+        clearInterval(this.timer);
+        this.timer = setInterval(() => {
+          this.loadAll();
+        }, 3000);
       }
     });
   }
@@ -63,7 +71,7 @@ export class HomePage implements OnInit {
   getSaldoTotal() {
     let suma = 0;
     for (let i = 0; i < this.cuentas.length; i++) {
-      suma += this.cuentas[i].saldo;  
+      suma += this.cuentas[i].saldo;
     }
     return suma;
   }
@@ -73,6 +81,7 @@ export class HomePage implements OnInit {
   }
 
   logout() {
+    clearInterval(this.timer);
     this.loginService.logout();
     this.app.getRootNavs()[0].setRoot(FirstRunPage);
   }
@@ -88,4 +97,10 @@ export class HomePage implements OnInit {
       console.log('Error: ', err);
     })
   }
+
+  /*cambiarActualizacion() {
+    console.log("Antes:" + this.actualizacionOnLine);
+    this.actualizacionOnLine = !this.actualizacionOnLine;
+    console.log("Ahora" + this.actualizacionOnLine);
+  }*/
 }
