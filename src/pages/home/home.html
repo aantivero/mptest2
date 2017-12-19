@@ -5,14 +5,42 @@
     </ion-title>
     <ion-buttons end>
       <button ion-button (click)="logout()">
-        Logout
+        Salir
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <p>{{ 'WELCOME_INTRO' | translate }}</p>
+  <ion-list>
+      <ion-item>
+        {{'WELCOME_INTRO' | translate}}
+        <button ion-button item-end icon-left (click)="refresh()">
+          <ion-icon name="refresh"></ion-icon>
+          Actualizar
+        </button>
+      </ion-item>
+  </ion-list>
+  <ion-card *ngFor="let cuenta of cuentas">
+    <ion-item>
+      <p>Banco {{cuenta.banco}}</p>
+    </ion-item>
+    <ion-card-content>
+      <h2>Alias: {{cuenta.aliasCbu}}</h2>
+      <p>CBU: {{cuenta.cbu}}</p>
+      <p><b>Saldo: $ {{cuenta.saldo}}</b></p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="cuentas?.length">
+    <ion-card-content>
+      <p><b>Saldo Total: $ {{getSaldoTotal()}}</b></p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-item *ngIf="!cuentas?.length">
+      No se encontraron cuentas configuradas en su billetera
+  </ion-item>
 
   <ion-item>
     <ion-input type="text" placeholder="Ingresar Datos..." [(ngModel)]="qrData"></ion-input>

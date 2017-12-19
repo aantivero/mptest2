@@ -4,6 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { IonicPageModule } from 'ionic-angular';
 
 import { HomePage } from './home';
+import { CuentaService } from '../entities/cuenta/index';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { HomePage } from './home';
   ],
   exports: [
     HomePage
-  ]
+  ],
+  providers: [CuentaService]
 })
 export class HomePageModule { }

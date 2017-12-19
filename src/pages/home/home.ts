@@ -1,9 +1,11 @@
+import { CuentaService } from './../entities/cuenta/cuenta.provider';
 import { Component, OnInit } from '@angular/core';
 import { App, IonicPage, NavController } from 'ionic-angular';
 import { Principal } from '../../providers/auth/principal.service';
 import { FirstRunPage } from '../pages';
 import { LoginService } from '../../providers/login/login.service';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { Cuenta } from '../entities/cuenta/index';
 
 @IonicPage()
 @Component({
@@ -13,6 +15,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 export class HomePage implements OnInit {
   account: Account;
 
+  cuentas: Cuenta[];
+
   qrData = null;
   createdCode = '';
   scannedCode = null;
@@ -21,7 +25,10 @@ export class HomePage implements OnInit {
               private principal: Principal,
               private app: App,
               private loginService: LoginService,
-              private barcodeScanner: BarcodeScanner) { }
+              private barcodeScanner: BarcodeScanner,
+              private cuentaService: CuentaService) {
+    this.cuentas = [];
+  }
 
   ngOnInit() {
     this.principal.identity().then((account) => {
@@ -29,8 +36,36 @@ export class HomePage implements OnInit {
         this.app.getRootNavs()[0].setRoot(FirstRunPage);
       } else {
         this.account = account;
+        this.loadAll();
       }
     });
+  }
+
+  refresh() {
+    this.loadAll();
+  }
+
+  loadAll() {
+    this.cuentaService.query().subscribe(
+        (response) => this.onSuccess(response),
+        (error) => this.onError(error));
+  }
+
+  private onSuccess(data) {
+    this.cuentas = data;
+  }
+
+  private onError(error) {
+    console.error(error);
+    // todo: use toaster, this.jhiAlertService.error(error.message, null, null);
+  }
+
+  getSaldoTotal() {
+    let suma = 0;
+    for (let i = 0; i < this.cuentas.length; i++) {
+      suma += this.cuentas[i].saldo;  
+    }
+    return suma;
   }
 
   isAuthenticated() {

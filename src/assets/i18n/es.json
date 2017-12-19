@@ -1,8 +1,10 @@
 {
   "NAME": "Nombre",
-  "PASSWORD": "Contraseña",
+  "USERNAME": "Usuario",
+  "PASSWORD": "Password",
+  "REMEMBER_ME": "Recordar",
   "EMAIL": "Email",
-  "LOGIN": "Iniciar sesión",
+  "LOGIN": "Ingresar",
   "SIGNUP": "Registrarse",
 
   "TAB1_TITLE": "Inicio",
@@ -33,7 +35,7 @@
 
   "WELCOME_TITLE": "Bienvenido/a",
 
-  "LOGIN_TITLE": "Iniciar sesión",
+  "LOGIN_TITLE": "Ingresar",
   "LOGIN_ERROR": "No se ha podido iniciar sesión. Por favor revisa la información de la cuenta e inténtalo de nuevo.",
   "LOGIN_BUTTON": "Iniciar sesión",
   "SIGNUP_TITLE": "Registro",
