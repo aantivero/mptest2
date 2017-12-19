@@ -9,3 +9,6 @@ export const MainPage = 'TabsPage';
 export const Tab1Root = 'HomePage';
 export const Tab2Root = 'EntityPage';
 export const Tab3Root = 'SettingsPage';
+export const PagarRoot = 'PagarPage';
+export const CobrarRoot = 'CobrarPage';
+export const VincularRoot = 'VincularPage';

@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Pagos
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <p>Pagar</p>
+
+  <div *ngIf="!codigoPagador">
+    <button ion-button full icon-left (click)="crearCodigoPagador()"><ion-icon name="barcode"></ion-icon>Mostrar tu Código</button>
+    <button ion-button full icon-right (click)="escanearCodigoAPagar()"><ion-icon name="qr-scanner"></ion-icon>Scanear Código a Pagar</button>
+  </div>
+  <ion-card *ngIf="codigoPagador">
+    <ngx-qrcode
+      [qrc-value] = "codigoPagador"
+      qrc-errorCorrectionLevel = "L">
+    </ngx-qrcode>
+    <!--<ion-card-content>
+      <p>Valor Creado: {{createdCode}}</p>
+    </ion-card-content>-->
+    <button ion-button full icon-left (click)="ocultarCodigoPagador()"><ion-icon name="barcode"></ion-icon>Ocultar tu Código</button>
+  </ion-card>
+
+  <ion-card *ngIf="codigoAPagar">
+    <ion-card-content>
+      Pedido de Pago: {{codigoAPagar}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>
