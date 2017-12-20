@@ -7,10 +7,11 @@
 </ion-header>
 
 <ion-content padding>
-  <p>Pagar</p>
 
   <div *ngIf="!codigoPagador">
+    <p>Aquí podes mostrar tu código para que te generen un Cobro</p>
     <button ion-button full icon-left (click)="crearCodigoPagador()"><ion-icon name="barcode"></ion-icon>Mostrar tu Código</button>
+    <p>O podes escanear el código a Pagar</p>
     <button ion-button full icon-right (click)="escanearCodigoAPagar()"><ion-icon name="qr-scanner"></ion-icon>Scanear Código a Pagar</button>
   </div>
   <ion-card *ngIf="codigoPagador">
@@ -26,7 +27,9 @@
 
   <ion-card *ngIf="codigoAPagar">
     <ion-card-content>
-      Pedido de Pago: {{codigoAPagar}}
+      Detalle del Pago: {{codigoAPagar}}
+      <button ion-button full icon-left (click)="aceptarCobro()" color="secondary"><ion-icon name="checkmark-circle-outline"></ion-icon>Aceptar</button>
+      <button ion-button full icon-left (click)="rechazarCobro()" color="danger"><ion-icon name="close-circle"></ion-icon>Rechazar</button>
     </ion-card-content>
   </ion-card>
 </ion-content>

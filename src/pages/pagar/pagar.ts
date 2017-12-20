@@ -22,7 +22,7 @@ export class PagarPage implements OnInit {
 
   qrData = null;
   createdCode = '';
-  codigoAPagar = null;
+  codigoAPagar = 'test: algo; saludo: 000';
   codigoPagador = '';
 
   constructor(public navCtrl: NavController,

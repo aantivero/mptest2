@@ -7,25 +7,27 @@
 </ion-header>
 
 <ion-content padding>
-  <p>Generar formulario de cobro</p>
+
 
   <!--<span class="hipster"></span>-->
   <!--<ion-item>
     <ion-input type="text" placeholder="Ingresar Datos..." [(ngModel)]="qrData"></ion-input>
   </ion-item>-->
+  <div *ngIf="!createdCode">
+    <p>Generar solicitud de cobro</p>
+    <ion-item>
+      <ion-input type="text" placeholder="Nombre de Cliente..." [(ngModel)]="cobro.cliente"></ion-input>
+    </ion-item>
+    <button ion-button full icon-right (click)="scanClientCode()"><ion-icon name="qr-scanner"></ion-icon>Scanear Código del Cliente</button>
 
-  <ion-item>
-    <ion-input type="text" placeholder="Nombre de Cliente..." [(ngModel)]="cobro.cliente"></ion-input>
-  </ion-item>
-  <button ion-button full icon-right (click)="scanClientCode()"><ion-icon name="qr-scanner"></ion-icon>Scanear Código del Cliente</button>
+    <ion-item>
+      <ion-input type="text" placeholder="Decripcion..." [(ngModel)]="cobro.descripcion"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-input type="text" placeholder="Decripcion..." [(ngModel)]="cobro.descripcion"></ion-input>
-  </ion-item>
-
-  <ion-item>
-    <ion-input type="number" placeholder="Monto..." [(ngModel)]="cobro.monto"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-input type="number" placeholder="Monto..." [(ngModel)]="cobro.monto"></ion-input>
+    </ion-item>
+  </div>
 
   <div *ngIf="!createdCode">
     <p>Ahora puedes:</p>
