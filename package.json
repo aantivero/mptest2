@@ -39,7 +39,7 @@
     "zone.js": "0.8.18"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "3.1.0",
+    "@ionic/app-scripts": "3.1.6",
     "@types/node": "^8.0.47",
     "generator-jhipster": "^4.10.2",
     "generator-jhipster-ionic": "^3.0.1",

@@ -4,6 +4,8 @@ import { IonicPageModule } from 'ionic-angular';
 
 import { PagarPage } from './pagar';
 import {NgxQRCodeModule} from 'ngx-qrcode2';
+import {CuentaService} from '../entities/cuenta';
+import {MensajeService} from '../entities/mensaje';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,10 @@ import {NgxQRCodeModule} from 'ngx-qrcode2';
   ],
   exports: [
     PagarPage
+  ],
+  providers: [
+    CuentaService,
+    MensajeService
   ]
 })
 export class PagarPageModule { }

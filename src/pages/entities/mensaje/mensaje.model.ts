@@ -2,17 +2,17 @@ import { Cuenta } from './../cuenta/cuenta.model';
 import { BaseEntity, User } from './../../../models';
 
 export const enum EstadoMensaje {
-    'CREADO',
-    ' ENVIADO',
-    ' ACEPTADO',
-    ' RECHAZADO'
+    'CREADO' = 'CREADO',
+    'ENVIADO' = 'ENVIADO',
+    'ACEPTADO' = 'ACEPTADO',
+    'RECHAZADO' = 'RECHAZADO'
 }
 
 export const enum TipoMensaje {
-    'COBRO',
-    ' PAGO',
-    ' DEBITO',
-    ' CREDITO'
+    'COBRO' = 'COBRO',
+    'PAGO' = 'PAGO',
+    'DEBITO' = 'DEBITO',
+    'CREDITO' = 'CREDITO'
 }
 
 export class Mensaje implements BaseEntity {

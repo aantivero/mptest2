@@ -8,7 +8,7 @@
 
 <ion-content padding>
 
-  <div *ngIf="!codigoPagador">
+  <div *ngIf="mostrarCabecera">
     <p>Aquí podes mostrar tu código para que te generen un Cobro</p>
     <button ion-button full icon-left (click)="crearCodigoPagador()"><ion-icon name="barcode"></ion-icon>Mostrar tu Código</button>
     <p>O podes escanear el código a Pagar</p>
@@ -27,7 +27,21 @@
 
   <ion-card *ngIf="codigoAPagar">
     <ion-card-content>
-      Detalle del Pago: {{codigoAPagar}}
+      <h2>Detalle del Pago:</h2>
+      <p>Emitido por: {{codigoAPagar.cobrador}}</p>
+      <p>Descripcion: {{codigoAPagar.descripcion}}</p>
+      <p>Importe: $ {{codigoAPagar.monto}}</p>
+      <p>Dirijido a: {{codigoAPagar.cliente}}</p>
+      <ion-item>
+        <ion-input type="text" placeholder="Comentario..." [(ngModel)]="comentario"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Cuenta para pagar</ion-label>
+        <ion-select id="field_cuentaEmisor" [(ngModel)]="cuenta">
+          <!--<ion-option [value]="null"></ion-option>-->
+          <ion-option [value]="cuentaOption" *ngFor="let cuentaOption of cuentas">{{cuentaOption.aliasCbu}}</ion-option>
+        </ion-select>
+      </ion-item>
       <button ion-button full icon-left (click)="aceptarCobro()" color="secondary"><ion-icon name="checkmark-circle-outline"></ion-icon>Aceptar</button>
       <button ion-button full icon-left (click)="rechazarCobro()" color="danger"><ion-icon name="close-circle"></ion-icon>Rechazar</button>
     </ion-card-content>

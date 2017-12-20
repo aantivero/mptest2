@@ -4,6 +4,7 @@ import { IonicPageModule } from 'ionic-angular';
 
 import { CobrarPage } from './cobrar';
 import {NgxQRCodeModule} from 'ngx-qrcode2';
+import {CuentaService} from '../entities/cuenta';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,9 @@ import {NgxQRCodeModule} from 'ngx-qrcode2';
   ],
   exports: [
     CobrarPage
+  ],
+  providers: [
+    CuentaService
   ]
 })
 export class CobrarPageModule { }
