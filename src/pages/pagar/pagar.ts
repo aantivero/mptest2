@@ -73,16 +73,18 @@ export class PagarPage implements OnInit {
     this.mostrarCabecera = true;
   }
 
-  escanearCodigoAPagar2() {
+  escanearCodigoAPagar() {
     this.barcodeScanner.scan().then(barcodeData => {
-      this.codigoAPagar = barcodeData.text;
+      this.codigoAPagar = JSON.parse(barcodeData.text);
+      this.cuentaService.query()
+        .subscribe(data => { this.cuentas = data; }, (error) => console.error(error));
     }, (err) => {
       console.log('Error: ', err);
     })
   }
 
-  escanearCodigoAPagar() {
-    let data = '{"cliente":"user","descripcion":"dos cafe","monto":"100","cuentaDestino":{"id":4252,"nombre":"cuentaAdmin002","cbu":"2222222222222222222222","aliasCbu":"AliasCuentaAdmin002","banco":"Comafi","saldo":35965,"user":{"id":3,"login":"admin","firstName":"Administrator","lastName":"Administrator","email":"admin@localhost","activated":true,"langKey":"es","imageUrl":"","resetDate":null}},"cobrador":"admin"}';
+  escanearCodigoAPagar2() {
+    let data = '{"cliente":"user","descripcion":"factura 12","monto":"600","cuentaDestino":{"id":1653,"nombre":"admincuenta001","cbu":"1233210000000000000000","aliasCbu":"AliasAdminCuenta001","banco":"Galicia","saldo":43000,"user":{"id":3,"login":"admin","firstName":"Administrator","lastName":"Administrator","email":"admin@localhost","activated":true,"langKey":"es","imageUrl":"","resetDate":null}},"cobrador":"admin"}';
     this.codigoAPagar = JSON.parse(data);
     this.cuentaService.query()
       .subscribe(data => { this.cuentas = data; }, (error) => console.error(error));
@@ -93,7 +95,7 @@ export class PagarPage implements OnInit {
     //armar y enviar el mensaje
     let mensaje = new Mensaje();
     console.log(EstadoMensaje.ACEPTADO);
-    console.log(TipoMensaje.COBRO)
+    console.log(TipoMensaje.COBRO);
     mensaje.tipo = TipoMensaje.COBRO;
     mensaje.estado = EstadoMensaje.ACEPTADO;
     mensaje.descripcion = this.codigoAPagar.descripcion;
